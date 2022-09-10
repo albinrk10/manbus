@@ -4,6 +4,6 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=manbus',
     'username' => 'root',
-    'password' => '123456',
+    'password' => '1996colon',
     'charset' => 'utf8',
 ];

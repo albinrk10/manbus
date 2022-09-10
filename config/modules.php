@@ -29,4 +29,7 @@ return [
     'seguridad' => [
         'class' => 'app\modules\seguridad\Seguridad',
     ],
+    'nuevo' => [
+        'class' => 'app\modules\nuevo\Nuevo',
+    ],
 ];
