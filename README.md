@@ -9,7 +9,7 @@
 
 CLONAR PROYECTO A MAQUINA LOCAL
 -------------------
-        git clone https://github.com/repo/manbus.git                        Para clonar proyecto del repositorio
+        git clone git@github.com:albinrk10/manbus.git                       Para clonar proyecto del repositorio
         git pull                                                            Para bajar cambios del repositorio  
         git status                                                          Para ver los archivos que tiene cambios realizados
         git add .                                                           Para agregar todos los archivos modificados/nuevos a memoria
