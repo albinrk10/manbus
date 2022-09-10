@@ -29,7 +29,13 @@ return [
     'seguridad' => [
         'class' => 'app\modules\seguridad\Seguridad',
     ],
+<<<<<<< HEAD
     'nuevo' => [
         'class' => 'app\modules\nuevo\Nuevo',
     ],
+=======
+    'prueba' => [
+            'class' => 'app\modules\prueba\prueba',
+        ],
+>>>>>>> b6c11cf2070fdd6fe9515c945b85de3026ecb0ac
 ];
