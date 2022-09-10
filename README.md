@@ -13,7 +13,7 @@ CLONAR PROYECTO A MAQUINA LOCAL
         git pull                                                            Para bajar cambios del repositorio  
         git status                                                          Para ver los archivos que tiene cambios realizados
         git add .                                                           Para agregar todos los archivos modificados/nuevos a memoria
-        git commit -m '<comentario del cambio>'                             Para agregar un comentario para subir
+        git commit -m '<comentarios del cambio>'                             Para agregar un comentario para subir
         git push                                                            Para Mandar cambios al repositorio  
 
 
