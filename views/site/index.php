@@ -9,7 +9,7 @@ $this->title = 'Manbus';
     <div class="jumbotron">
         <h1>¡Bienvenido!</h1>
 
-        <p class="lead">Sistema de mantenimiento de buses del Corredor Morado SJL - Manbus</p>
+        <p class="lead">Sistema de mantenimiento de buses - Manbus</p>
 
     </div>
 

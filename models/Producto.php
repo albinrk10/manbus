@@ -13,7 +13,7 @@ use Yii;
  * @property string $descripcion
  * @property int $estado
  * @property string $precio
- * @property int $stock
+ * @property string $stock
  * @property int $id_usuario_reg
  * @property string $fecha_reg
  * @property string $ipmaq_reg
@@ -40,9 +40,9 @@ class Producto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['codigo_producto', 'nombre', 'descripcion', 'estado', 'stock', 'id_usuario_reg', 'fecha_reg'], 'required'],
-            [['estado', 'stock', 'id_usuario_reg', 'id_usuario_act', 'id_usuario_del'], 'integer'],
-            [['precio'], 'number'],
+            [['codigo_producto', 'nombre', 'descripcion', 'estado', 'id_usuario_reg', 'fecha_reg'], 'required'],
+            [['estado', 'id_usuario_reg', 'id_usuario_act', 'id_usuario_del'], 'integer'],
+            [['precio', 'stock'], 'number'],
             [['fecha_reg', 'fecha_act', 'fecha_del'], 'safe'],
             [['codigo_producto', 'nombre', 'descripcion'], 'string', 'max' => 50],
             [['ipmaq_reg', 'ipmaq_act', 'ipmaq_del'], 'string', 'max' => 20],

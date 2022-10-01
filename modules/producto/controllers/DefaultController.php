@@ -170,7 +170,7 @@ class DefaultController extends Controller
                 "nombre" => $row['nombre'],
                 "descripcion" => $row['descripcion'],
                 "estado" => $row['estado'],
-                "precio" => $row['precio'],
+                "precio" => '<span class="text-dark-65 font-weight-bolder font-size-h5-sm">S/.' . $row['precio'] . '</span>',
                 "stock" => $row['stock'],
                 "accion" => '<button class="btn btn-sm btn-light-success font-weight-bold mr-2" onclick="funcionEditar(' . $row["id_producto"] . ')"><i class="flaticon-edit"></i>Editar</button>
                              <button class="btn btn-sm btn-light-danger font-weight-bold mr-2" onclick="funcionEliminar(' . $row["id_producto"] . ')"><i class="flaticon-delete"></i>Eliminar</button>',

@@ -1,4 +1,21 @@
 <form id="form-taller">
+    <div class="form-group row">
+        <div class="col-1">
+            <span class="switch switch-sm switch-icon">
+                <label>
+                    <input type="checkbox" name="select" id="flag_concesionario">
+                    <span></span>
+                </label>
+            </span>
+        </div>
+        <label class="col-8 col-form-label">¿Pertenece a un concesionario?</label>
+    </div>
+
+    <div class="form-group" id="view_concesionario">
+        <label>Nombre Concesionario</label>
+        <input type="text" class="form-control" placeholder="Ingrese nombre concesionario" name="concesionario" id="concesionario"/>
+    </div>
+
     <div class="form-group">
         <label>Codigo Taller<span class="text-danger">*</span></label>
         <input type="text" class="form-control" placeholder="Ingrese codigo" name="codigo" id="codigo"/>

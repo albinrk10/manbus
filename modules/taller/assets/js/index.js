@@ -3,6 +3,11 @@ var columnas = [
     {
         field: "codigo_taller",
         title: "Codigo Taller",
+        width: 100
+    },
+    {
+        field: "concesionario",
+        title: "Concesionario"
     },
     {
         field: "nombre",
@@ -15,7 +20,7 @@ var columnas = [
     {
         field: "accion",
         title: "Acciones",
-        width: 210
+        width: 270
     }
 ];
 

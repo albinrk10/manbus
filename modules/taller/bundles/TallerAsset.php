@@ -14,6 +14,7 @@ class TallerAsset extends AssetBundle {
         'js/crear.js',
         'js/editar.js',
         'js/eliminar.js',
+        'js/area.js',
     ];
     public $depends = [
         'app\bundles\TemplateAsset',

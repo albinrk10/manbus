@@ -20,6 +20,7 @@ use Yii;
  * @property int $id_usuario_del
  * @property string $fecha_del
  * @property string $ipmaq_del
+ * @property string $concesionario
  */
 class Taller extends \yii\db\ActiveRecord
 {
@@ -42,7 +43,7 @@ class Taller extends \yii\db\ActiveRecord
             [['fecha_reg', 'fecha_act', 'fecha_del'], 'safe'],
             [['codigo_taller'], 'string', 'max' => 10],
             [['nombre'], 'string', 'max' => 100],
-            [['direccion'], 'string', 'max' => 200],
+            [['direccion', 'concesionario'], 'string', 'max' => 200],
             [['ipmaq_reg', 'ipmaq_act', 'ipmaq_del'], 'string', 'max' => 20],
         ];
     }
@@ -66,6 +67,7 @@ class Taller extends \yii\db\ActiveRecord
             'id_usuario_del' => 'Id Usuario Del',
             'fecha_del' => 'Fecha Del',
             'ipmaq_del' => 'Ipmaq Del',
+            'concesionario' => 'Concesionario',
         ];
     }
 }

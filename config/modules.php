@@ -35,10 +35,10 @@ return [
     'taller' => [
         'class' => 'app\modules\taller\Taller',
     ],
-    'prueba' => [
-        'class' => 'app\modules\prueba\Prueba',
+    'almacen' => [
+        'class' => 'app\modules\almacen\Almacen',
     ],
-    'nuevo' => [
-        'class' => 'app\modules\nuevo\Nuevo',
+    'vehiculo' => [
+        'class' => 'app\modules\vehiculo\Vehiculo',
     ],
 ];

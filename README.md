@@ -9,11 +9,11 @@
 
 CLONAR PROYECTO A MAQUINA LOCAL
 -------------------
-        git clone git@github.com:albinrk10/manbus.git                       Para clonar proyecto del repositorio
+        git clone https://github.com/FranklinRuiz/mantenimiento.git         Para clonar proyecto del repositorio
         git pull                                                            Para bajar cambios del repositorio  
         git status                                                          Para ver los archivos que tiene cambios realizados
         git add .                                                           Para agregar todos los archivos modificados/nuevos a memoria
-        git commit -m '<comentarios del cambio>'                             Para agregar un comentario para subir
+        git commit -m '<comentario del cambio>'                             Para agregar un comentario para subir
         git push                                                            Para Mandar cambios al repositorio  
 
 

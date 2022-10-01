@@ -13,7 +13,7 @@ $bundle = TallerAsset::register($this);
         <div class="card-toolbar">
             <!--begin::Button-->
             <button id="modal-taller" class="btn btn-primary">
-                <i class="text-white flaticon-avatar"></i>
+                <i class="text-white flaticon-cogwheel-2"></i>
                 Registrar Taller
             </button>
             <!--end::Button-->

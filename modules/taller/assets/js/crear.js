@@ -10,6 +10,16 @@ $("#modal-taller").on("click", function () {
             bootbox.hideAll();
         });
 
+        $("#view_concesionario").hide();
+
+        $("#flag_concesionario").change(function () {
+            if ($(this).prop('checked')) {
+                $("#view_concesionario").show();
+            } else {
+                $("#view_concesionario").hide();
+            }
+        })
+
         $(document).ready(function () {
             $("#btn-guardar").click(function () {
                 $("#form-taller").validate({
@@ -27,6 +37,7 @@ $("#modal-taller").on("click", function () {
                         var codigo = $("#codigo").val();
                         var nombre = $("#nombre").val();
                         var direccion = $("#direccion").val();
+                        var concesionario = ($("#flag_concesionario").prop('checked')) ? $("#concesionario").val() : '';
 
                         $.ajax({
                             type: "POST",
@@ -36,7 +47,8 @@ $("#modal-taller").on("click", function () {
                             data: {
                                 codigo: codigo,
                                 nombre: nombre,
-                                direccion: direccion
+                                direccion: direccion,
+                                concesionario: concesionario,
                             },
                             success: function (response) {
                                 bootbox.hideAll();
