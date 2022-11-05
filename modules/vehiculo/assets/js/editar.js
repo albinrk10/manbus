@@ -11,10 +11,14 @@ function funcionEditar(id) {
             bootbox.hideAll();
         });
 
-    
+
         $("#marca_vehiculo").select2({
             placeholder: "Seleccioné Marca"
         });
+
+        $("#estado").select2({
+            placeholder: "Seleccione Estado"
+        })
 
         $(document).ready(function () {
             $("#btn-guardar").click(function () {
@@ -53,6 +57,9 @@ function funcionEditar(id) {
                         var incripcion = $("#incripcion").val();
                         var config_vehicular = $("#config_vehicular").val();
                         var tara = $("#tara").val();
+                        var estado = $("#estado").val();
+                        var flg_inspeccion_tecnica = $('#flg_inspeccion_tecnica').prop('checked');
+                        var flg_soat = $('#flg_soat').prop('checked');
 
 
                         $.ajax({
@@ -80,8 +87,10 @@ function funcionEditar(id) {
                                 descripcion: descripcion,
                                 incripcion: incripcion,
                                 tara: tara,
-                                config_vehicular:config_vehicular
-
+                                config_vehicular: config_vehicular,
+                                estado: estado,
+                                flg_inspeccion_tecnica: (flg_inspeccion_tecnica) ? 1 : 0,
+                                flg_soat: (flg_soat) ? 1 : 0
                             },
                             success: function (response) {
 

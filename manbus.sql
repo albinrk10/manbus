@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-09-2022 a las 01:23:04
+-- Tiempo de generación: 05-11-2022 a las 06:38:28
 -- Versión del servidor: 8.0.17
 -- Versión de PHP: 7.4.13
 
@@ -60,6 +60,57 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoAlmacen` (IN `row1` INT, IN 
     select totalRegistro INTO total;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoChoque` (IN `row1` INT, IN `length1` INT, IN `busca` VARCHAR(200), OUT `total` INT)   BEGIN
+
+    declare totalRegistro int;
+
+    select m.id_choque,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           m.fecha,
+           m.detalle
+    from choque m
+             inner join vehiculos v on m.id_vehiculo = v.id_vehiculo
+    where m.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',m.detalle) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from choque d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+                         where d.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.detalle) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoDiagnostico` (IN `row1` INT, IN `length1` INT, IN `busca` VARCHAR(200), OUT `total` INT)   BEGIN
+
+    declare totalRegistro int;
+
+    select d.id_diagnostico,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           d.descripcion
+    from diagnostico d
+             inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+    where d.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from diagnostico d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+                         where d.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoEmpleado` (IN `row1` INT, IN `length1` INT, IN `busca` VARCHAR(200))   BEGIN
 	select
 		id_empleado,
@@ -71,6 +122,32 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoEmpleado` (IN `row1` INT, IN
 	from empleado
   where fecha_del is null and concat(nombres,' ',apellido_paterno,' ',apellido_materno) like concat('%',busca,'%')
 		LIMIT row1,length1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoMantenimiento` (IN `row1` INT, IN `length1` INT, IN `busca` VARCHAR(200), OUT `total` INT)   BEGIN
+
+    declare totalRegistro int;
+
+    select m.id_mantenimiento,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           m.fecha,
+           m.descripcion
+    from mantenimiento m
+             inner join vehiculos v on m.id_vehiculo = v.id_vehiculo
+    where m.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',m.descripcion) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from mantenimiento d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+                         where d.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoModulo` (IN `row1` INT, IN `length1` INT, IN `buscar` VARCHAR(200))   BEGIN
@@ -183,16 +260,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoVehiuclo` (IN `row1` INT, IN
         descripcion,
         incripcion,
         config_vehicular,
-        flg_estado
+        flg_estado,
+        estado
     from vehiculos
     where fecha_del is null
-      and concat(matricula, ' ', descripcion) like concat('%', busca, '%')
+      and concat(matricula, ' ', descripcion,' ',estado) like concat('%', busca, '%')
     LIMIT row1,length1;
 
     set totalRegistro = (select count(*)
                          from vehiculos
                          where fecha_del is null
-                           and concat(matricula, ' ', descripcion) like concat('%', busca, '%'));
+                           and concat(matricula, ' ', descripcion,' ',estado) like concat('%', busca, '%'));
 
     select totalRegistro INTO total;
 END$$
@@ -249,7 +327,8 @@ INSERT INTO `almacen` (`id_almacen`, `id_producto`, `cantidad_entrada`, `cantida
 (3, '2', '175.25', '0.00', '175.25', 1, '2022-09-27 23:35:15', '127.0.0.1', 1, '2022-09-27 23:36:22', '127.0.0.1', 1, '2022-09-27 23:49:13', '127.0.0.1', '2022-09-22'),
 (4, '2', '14.00', '0.00', '14.00', 1, '2022-09-27 23:46:46', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-27 23:49:10', '127.0.0.1', '2022-09-28'),
 (6, '2', '150.00', '0.00', '150.00', 1, '2022-09-27 23:51:41', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-27'),
-(7, '2', '15.00', '0.00', '15.00', 1, '2022-09-27 23:52:08', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-26');
+(7, '2', '15.00', '0.00', '15.00', 1, '2022-09-27 23:52:08', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-26'),
+(8, '2', '100.00', '0.00', '100.00', 1, '2022-09-28 21:58:54', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, '2022-09-28');
 
 -- --------------------------------------------------------
 
@@ -284,7 +363,68 @@ INSERT INTO `area` (`id_area`, `id_taller`, `codigo`, `nombre`, `id_usuario_reg`
 (4, 2, NULL, 'Prueba de registro de area nueva', 1, '2022-09-27 22:14:38', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 2, NULL, 'sdfsfsf', 1, '2022-09-27 22:15:42', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-27 22:15:47', '127.0.0.1'),
 (6, 2, NULL, 'sdfsfsfsfsdfs', 1, '2022-09-27 22:15:45', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-27 22:17:19', '127.0.0.1'),
-(7, 2, NULL, 'dgdfgdgd', 1, '2022-09-27 22:17:17', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
+(7, 2, NULL, 'dgdfgdgd', 1, '2022-09-27 22:17:17', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 3, NULL, 'Mantenimiento', 1, '2022-09-28 21:57:28', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 3, NULL, 'Limpieza', 1, '2022-09-28 21:57:38', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `choque`
+--
+
+CREATE TABLE `choque` (
+  `id_choque` int(11) NOT NULL,
+  `id_vehiculo` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL,
+  `detalle` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_reg` int(11) NOT NULL,
+  `fecha_reg` datetime NOT NULL,
+  `ipmaq_reg` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `id_usuario_act` int(11) DEFAULT NULL,
+  `fecha_act` datetime DEFAULT NULL,
+  `ipmaq_act` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_del` int(11) DEFAULT NULL,
+  `fecha_del` datetime DEFAULT NULL,
+  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `estado` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `choque`
+--
+
+INSERT INTO `choque` (`id_choque`, `id_vehiculo`, `fecha`, `detalle`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`, `estado`) VALUES
+(1, 3, '2022-11-05', '2022 sfsf', 1, '2022-11-05 00:44:04', '127.0.0.1', NULL, NULL, NULL, 1, NULL, '127.0.0.1', 'reparado'),
+(2, 1, '2022-11-05', 'dxfsfsdf', 1, '2022-11-05 01:30:00', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, 'por reparar');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `diagnostico`
+--
+
+CREATE TABLE `diagnostico` (
+  `id_diagnostico` int(11) NOT NULL,
+  `id_vehiculo` int(11) NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_reg` int(11) NOT NULL,
+  `fecha_reg` datetime NOT NULL,
+  `ipmaq_reg` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `id_usuario_act` int(11) DEFAULT NULL,
+  `fecha_act` datetime DEFAULT NULL,
+  `ipmaq_act` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_del` int(11) DEFAULT NULL,
+  `fecha_del` datetime DEFAULT NULL,
+  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `diagnostico`
+--
+
+INSERT INTO `diagnostico` (`id_diagnostico`, `id_vehiculo`, `descripcion`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
+(1, 1, 'Prueba 2022', 1, '2022-11-04 22:46:38', '127.0.0.1', 1, '2022-11-04 23:04:44', '127.0.0.1', 1, '2022-11-04 23:06:01', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -321,6 +461,35 @@ INSERT INTO `empleado` (`id_empleado`, `dni`, `nombres`, `apellido_paterno`, `ap
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mantenimiento`
+--
+
+CREATE TABLE `mantenimiento` (
+  `id_mantenimiento` int(11) NOT NULL,
+  `id_vehiculo` int(11) NOT NULL,
+  `descripcion` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `id_usuario_reg` int(11) NOT NULL,
+  `fecha_reg` datetime NOT NULL,
+  `ipmaq_reg` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `id_usuario_act` int(11) DEFAULT NULL,
+  `fecha_act` datetime DEFAULT NULL,
+  `ipmaq_act` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_del` int(11) DEFAULT NULL,
+  `fecha_del` datetime DEFAULT NULL,
+  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `mantenimiento`
+--
+
+INSERT INTO `mantenimiento` (`id_mantenimiento`, `id_vehiculo`, `descripcion`, `fecha`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
+(1, 1, '2022', '2022-11-12', 1, '2022-11-05 00:21:34', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `modulo`
 --
 
@@ -350,7 +519,11 @@ INSERT INTO `modulo` (`id_modulo`, `nombre_modulo`, `url`, `id_usuario_reg`, `fe
 (15, 'Producto', 'producto', 1, '2022-09-27 19:37:53', '127.0.0.1', 1, '2022-09-28 00:44:23', '127.0.0.1', NULL, NULL, NULL),
 (16, 'Taller', 'taller', 1, '2022-09-27 19:38:01', '127.0.0.1', 1, '2022-09-28 00:44:31', '127.0.0.1', NULL, NULL, NULL),
 (17, 'Almacen', 'almacen', 1, '2022-09-27 22:34:21', '127.0.0.1', 1, '2022-09-28 00:44:37', '127.0.0.1', NULL, NULL, NULL),
-(18, 'Vehiculo', 'vehiculo', 1, '2022-09-28 20:20:07', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
+(18, 'Vehiculo', 'vehiculo', 1, '2022-09-28 20:20:07', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(19, 'Diagnostico', 'diagnostico', 1, '2022-11-01 18:13:43', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(20, 'Mantenimiento', 'mantenimiento', 1, '2022-11-04 23:50:30', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 'Choque / siniestro vehicular', 'choque', 1, '2022-11-05 00:28:55', '127.0.0.1', 1, '2022-11-05 00:29:15', '127.0.0.1', NULL, NULL, NULL),
+(22, 'Dashboard', 'dashboard', 1, '2022-11-05 01:03:21', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -383,7 +556,7 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `codigo_producto`, `nombre`, `descripcion`, `estado`, `precio`, `stock`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
 (1, 'C0002', 'gfh', 'fgh2020', 1, '10.20', '10.00', 1, '2022-09-10 00:51:56', '127.0.0.1', 1, '2022-09-10 00:56:06', '127.0.0.1', 1, '2022-09-10 00:56:35', '127.0.0.1'),
-(2, 'C0002', 'asdad', 'adasd', 1, '120.50', '175.00', 1, '2022-09-10 00:57:08', '127.0.0.1', 1, '2022-09-10 00:57:15', '127.0.0.1', NULL, NULL, NULL);
+(2, 'C0002', 'asdad', 'adasd', 1, '120.50', '275.00', 1, '2022-09-10 00:57:08', '127.0.0.1', 1, '2022-09-10 00:57:15', '127.0.0.1', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -412,7 +585,7 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id_rol`, `nombre_rol`, `descripcion`, `estado`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
-(1, 'administrador', 'prueba', 1, 1, '2021-04-30 22:41:48', '::1', 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL),
+(1, 'administrador', 'prueba', 1, 1, '2021-04-30 22:41:48', '::1', 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL),
 (5, 'asdad', 'asdasd2020', 1, 1, '2022-09-09 23:53:31', '127.0.0.1', 1, '2022-09-09 23:54:07', '127.0.0.1', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -441,25 +614,59 @@ CREATE TABLE `rol_modulo` (
 --
 
 INSERT INTO `rol_modulo` (`id_rol_modulo`, `id_rol`, `id_modulo`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
-(167, 1, 1, 1, '2022-08-30 21:25:21', '::1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(168, 1, 2, 1, '2022-08-30 21:25:21', '::1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
+(167, 1, 1, 1, '2022-08-30 21:25:21', '::1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(168, 1, 2, 1, '2022-08-30 21:25:21', '::1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
 (169, 5, 1, 1, '2022-09-09 23:53:31', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-09 23:54:07', '127.0.0.1'),
 (170, 5, 1, 1, '2022-09-09 23:54:07', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(171, 1, 1, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(172, 1, 2, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(173, 1, 15, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(174, 1, 16, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(175, 1, 1, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(176, 1, 2, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(177, 1, 15, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(178, 1, 16, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(179, 1, 17, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-09-28 20:20:13', '127.0.0.1'),
-(180, 1, 1, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(181, 1, 2, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(182, 1, 15, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(183, 1, 16, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(184, 1, 17, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
-(185, 1, 18, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
+(171, 1, 1, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(172, 1, 2, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(173, 1, 15, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(174, 1, 16, 1, '2022-09-27 19:38:09', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(175, 1, 1, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(176, 1, 2, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(177, 1, 15, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(178, 1, 16, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(179, 1, 17, 1, '2022-09-27 22:34:27', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(180, 1, 1, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(181, 1, 2, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(182, 1, 15, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(183, 1, 16, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(184, 1, 17, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(185, 1, 18, 1, '2022-09-28 20:20:13', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(186, 1, 1, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(187, 1, 2, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(188, 1, 15, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(189, 1, 16, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(190, 1, 17, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(191, 1, 18, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(192, 1, 19, 1, '2022-11-01 18:13:50', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(193, 1, 1, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(194, 1, 2, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(195, 1, 15, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(196, 1, 16, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(197, 1, 17, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(198, 1, 18, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(199, 1, 19, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(200, 1, 20, 1, '2022-11-04 23:50:37', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(201, 1, 1, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(202, 1, 2, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(203, 1, 15, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(204, 1, 16, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(205, 1, 17, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(206, 1, 18, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(207, 1, 19, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(208, 1, 20, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(209, 1, 21, 1, '2022-11-05 00:29:02', '127.0.0.1', NULL, NULL, NULL, 1, '2022-11-05 01:07:12', '127.0.0.1'),
+(210, 1, 1, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(211, 1, 2, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(212, 1, 15, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(213, 1, 16, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(214, 1, 17, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(215, 1, 18, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(216, 1, 19, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(217, 1, 20, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(218, 1, 21, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL),
+(219, 1, 22, 1, '2022-11-05 01:07:12', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -568,15 +775,19 @@ CREATE TABLE `vehiculos` (
   `ipmaq_act` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id_usuario_del` int(11) DEFAULT NULL,
   `fecha_del` datetime DEFAULT NULL,
-  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `estado` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `flg_inspeccion_tecnica` tinyint(4) DEFAULT NULL,
+  `flg_soat` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `vehiculos`
 --
 
-INSERT INTO `vehiculos` (`id_vehiculo`, `marca`, `version`, `modelo`, `matricula`, `denominacion_comercial`, `medidas_neumaticos`, `altura`, `anchura`, `longitud`, `distancia_entre_ejes`, `masa_maxima_autorizada`, `tipo_motor`, `numero_cilindros`, `cilindarada`, `potencia_expresada_en_cv`, `potencia_expresada_en_kw`, `numero_bastidor`, `numero_plazas`, `tara`, `descripcion`, `incripcion`, `config_vehicular`, `flg_estado`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`) VALUES
-(1, 'toyota', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', NULL, NULL, 'as', 'as', NULL, 'as', 'as', 'as', 'as', 'as', '2022', 'as', 'as', 1, 1, '2022-09-28 20:00:07', '127.0.0.1', 1, '2022-09-28 20:17:05', '127.0.0.1', 1, '2022-09-28 20:17:09', '127.0.0.1');
+INSERT INTO `vehiculos` (`id_vehiculo`, `marca`, `version`, `modelo`, `matricula`, `denominacion_comercial`, `medidas_neumaticos`, `altura`, `anchura`, `longitud`, `distancia_entre_ejes`, `masa_maxima_autorizada`, `tipo_motor`, `numero_cilindros`, `cilindarada`, `potencia_expresada_en_cv`, `potencia_expresada_en_kw`, `numero_bastidor`, `numero_plazas`, `tara`, `descripcion`, `incripcion`, `config_vehicular`, `flg_estado`, `id_usuario_reg`, `fecha_reg`, `ipmaq_reg`, `id_usuario_act`, `fecha_act`, `ipmaq_act`, `id_usuario_del`, `fecha_del`, `ipmaq_del`, `estado`, `flg_inspeccion_tecnica`, `flg_soat`) VALUES
+(1, 'toyota', 'as', 'as', 'as', 'as', 'as', 'as', 'as', 'as', NULL, NULL, 'as', 'as', NULL, 'as', 'as', 'as', 'as', 'as', '2022', 'as', 'as', 1, 1, '2022-09-28 20:00:07', '127.0.0.1', 1, '2022-11-04 23:40:23', '127.0.0.1', 1, NULL, '127.0.0.1', 'Inoperativo', 1, 1),
+(3, 'toyota', 'a10', 'prueba', 'AL102', 'prueba', '150', '2.5', '7', '2', NULL, NULL, 'prueba', 'as', NULL, 'as', '1', 'as', 'as', '10', 'Derivadas', 'prueba', 'as', 1, 1, '2022-11-04 23:42:17', '127.0.0.1', NULL, NULL, NULL, NULL, NULL, NULL, 'Operativo', NULL, 1);
 
 --
 -- Índices para tablas volcadas
@@ -595,10 +806,28 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`id_area`);
 
 --
+-- Indices de la tabla `choque`
+--
+ALTER TABLE `choque`
+  ADD PRIMARY KEY (`id_choque`);
+
+--
+-- Indices de la tabla `diagnostico`
+--
+ALTER TABLE `diagnostico`
+  ADD PRIMARY KEY (`id_diagnostico`);
+
+--
 -- Indices de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   ADD PRIMARY KEY (`id_empleado`) USING BTREE;
+
+--
+-- Indices de la tabla `mantenimiento`
+--
+ALTER TABLE `mantenimiento`
+  ADD PRIMARY KEY (`id_mantenimiento`);
 
 --
 -- Indices de la tabla `modulo`
@@ -650,13 +879,25 @@ ALTER TABLE `vehiculos`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `choque`
+--
+ALTER TABLE `choque`
+  MODIFY `id_choque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `diagnostico`
+--
+ALTER TABLE `diagnostico`
+  MODIFY `id_diagnostico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -665,10 +906,16 @@ ALTER TABLE `empleado`
   MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT de la tabla `mantenimiento`
+--
+ALTER TABLE `mantenimiento`
+  MODIFY `id_mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -686,7 +933,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `rol_modulo`
 --
 ALTER TABLE `rol_modulo`
-  MODIFY `id_rol_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `id_rol_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT de la tabla `taller`
@@ -704,7 +951,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `vehiculos`
 --
 ALTER TABLE `vehiculos`
-  MODIFY `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

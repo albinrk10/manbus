@@ -40,6 +40,9 @@ use Yii;
  * @property int $id_usuario_del
  * @property string $fecha_del
  * @property string $ipmaq_del
+ * @property string $estado
+ * @property int $flg_inspeccion_tecnica
+ * @property int $flg_soat
  */
 class Vehiculo extends \yii\db\ActiveRecord
 {
@@ -58,12 +61,13 @@ class Vehiculo extends \yii\db\ActiveRecord
     {
         return [
             [['marca', 'flg_estado', 'id_usuario_reg', 'fecha_reg', 'ipmaq_reg'], 'required'],
-            [['flg_estado', 'id_usuario_reg', 'id_usuario_act', 'id_usuario_del'], 'integer'],
+            [['flg_estado', 'id_usuario_reg', 'id_usuario_act', 'id_usuario_del', 'flg_inspeccion_tecnica', 'flg_soat'], 'integer'],
             [['fecha_reg', 'fecha_act', 'fecha_del'], 'safe'],
             [['marca'], 'string', 'max' => 100],
             [['version', 'modelo', 'matricula', 'denominacion_comercial', 'medidas_neumaticos', 'altura', 'anchura', 'longitud', 'distancia_entre_ejes', 'masa_maxima_autorizada', 'tipo_motor', 'numero_cilindros', 'cilindarada', 'potencia_expresada_en_cv', 'potencia_expresada_en_kw', 'numero_bastidor', 'numero_plazas', 'tara', 'config_vehicular'], 'string', 'max' => 255],
             [['descripcion', 'incripcion'], 'string', 'max' => 200],
             [['ipmaq_reg', 'ipmaq_act', 'ipmaq_del'], 'string', 'max' => 20],
+            [['estado'], 'string', 'max' => 50],
         ];
     }
 
@@ -106,6 +110,9 @@ class Vehiculo extends \yii\db\ActiveRecord
             'id_usuario_del' => 'Id Usuario Del',
             'fecha_del' => 'Fecha Del',
             'ipmaq_del' => 'Ipmaq Del',
+            'estado' => 'Estado',
+            'flg_inspeccion_tecnica' => 'Flg Inspeccion Tecnica',
+            'flg_soat' => 'Flg Soat',
         ];
     }
 }

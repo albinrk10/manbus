@@ -11,6 +11,10 @@ $("#modal-vehiculosn").on("click", function () {
             bootbox.hideAll();
         });
 
+        $("#estado").select2({
+            placeholder: "Seleccione Estado"
+        })
+
         $(document).ready(function () {
             $("#btn-guardarv").click(function () {
                 $("#form-vehiculosn").validate({
@@ -58,26 +62,28 @@ $("#modal-vehiculosn").on("click", function () {
                     },
                     submitHandler: function () {
 
-                       var marca = $("#marca").val();
-                       var version = $("#version").val();
-                       var modelo = $("#modelo").val();
-                       var matricula = $("#matricula").val();
-                       var denominacion_comercial = $("#denominacion_comercial").val();
-                       var medida_neumatico = $("#medida_neumatico").val();
-                       var altura = $("#altura").val();
-                       var anchura = $("#anchura").val();
-                       var longitud = $("#longitud").val();
-                       var tipo_motor = $("#tipo_motor").val();
-                       var numero_cilindros = $("#numero_cilindros").val();
-                       var potencia_expresada_en_cv = $("#potencia_expresada_en_cv").val();
-                       var potencia_expresada_en_kw = $("#potencia_expresada_en_kw").val();
-                       var numero_bastidor = $("#numero_bastidor").val();
-                       var numero_plazas = $("#numero_plazas").val();
-                       var descripcion = $("#descripcion").val();
-                       var incripcion = $("#incripcion").val();
-                       var config_vehicular = $("#config_vehicular").val();
-                       var tara = $("#tara").val();
-
+                        var marca = $("#marca").val();
+                        var version = $("#version").val();
+                        var modelo = $("#modelo").val();
+                        var matricula = $("#matricula").val();
+                        var denominacion_comercial = $("#denominacion_comercial").val();
+                        var medida_neumatico = $("#medida_neumatico").val();
+                        var altura = $("#altura").val();
+                        var anchura = $("#anchura").val();
+                        var longitud = $("#longitud").val();
+                        var tipo_motor = $("#tipo_motor").val();
+                        var numero_cilindros = $("#numero_cilindros").val();
+                        var potencia_expresada_en_cv = $("#potencia_expresada_en_cv").val();
+                        var potencia_expresada_en_kw = $("#potencia_expresada_en_kw").val();
+                        var numero_bastidor = $("#numero_bastidor").val();
+                        var numero_plazas = $("#numero_plazas").val();
+                        var descripcion = $("#descripcion").val();
+                        var incripcion = $("#incripcion").val();
+                        var config_vehicular = $("#config_vehicular").val();
+                        var tara = $("#tara").val();
+                        var estado = $("#estado").val();
+                        var flg_inspeccion_tecnica = $('#flg_inspeccion_tecnica').prop('checked');
+                        var flg_soat = $('#flg_soat').prop('checked');
 
                         $.ajax({
                             type: "POST",
@@ -103,8 +109,10 @@ $("#modal-vehiculosn").on("click", function () {
                                 descripcion: descripcion,
                                 incripcion: incripcion,
                                 tara: tara,
-                                config_vehicular:config_vehicular
-                                 
+                                config_vehicular: config_vehicular,
+                                estado: estado,
+                                flg_inspeccion_tecnica: (flg_inspeccion_tecnica) ? 1 : 0,
+                                flg_soat: (flg_soat) ? 1 : 0
                             },
                             success: function (response) {
 

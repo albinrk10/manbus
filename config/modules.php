@@ -41,4 +41,16 @@ return [
     'vehiculo' => [
         'class' => 'app\modules\vehiculo\Vehiculo',
     ],
+    'diagnostico' => [
+        'class' => 'app\modules\diagnostico\Diagnostico',
+    ],
+    'mantenimiento' => [
+        'class' => 'app\modules\mantenimiento\Mantenimiento',
+    ],
+    'choque' => [
+        'class' => 'app\modules\choque\Choque',
+    ],
+    'dashboard' => [
+        'class' => 'app\modules\dashboard\Dashboard',
+    ],
 ];

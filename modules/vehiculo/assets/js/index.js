@@ -6,22 +6,25 @@ var columnas = [
                 "matricula" => $row['matricula'],*/
     {
         field: "marca",
-        title: "marca"
+        title: "Marca"
     },
     {
         field: "version",
-        title: "version"
+        title: "Version"
     },
     {
         field: "modelo",
-        title: "modelo"
+        title: "Modelo"
     },
 
     {
         field: "matricula",
-        title: "matricula"
+        title: "Matricula"
     },
- 
+    {
+        field: "estado",
+        title: "Estado"
+    },
     {
         field: "accion",
         title: "Acciones",

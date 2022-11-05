@@ -6,6 +6,11 @@ use app\components\Utils;
 use app\models\Vehiculo;
 use app\models\Vehiculos;
 use app\models\Vehiculosn;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use yii\debug\models\search\Log;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -70,6 +75,7 @@ class DefaultController extends Controller
                 $vehiculos->incripcion = $post['incripcion'];
                 $vehiculos->config_vehicular = $post['config_vehicular'];
                 $vehiculos->tara = $post['tara'];
+                $vehiculos->estado = $post['estado'];
 
                 $vehiculos->flg_estado = Utils::ACTIVO;
                 $vehiculos->id_usuario_reg = Yii::$app->user->getId();
@@ -145,6 +151,9 @@ class DefaultController extends Controller
                 $vehiculos->incripcion = $post['incripcion'];
                 $vehiculos->config_vehicular = $post['config_vehicular'];
                 $vehiculos->tara = $post['tara'];
+                $vehiculos->estado = $post['estado'];
+                $vehiculos->flg_inspeccion_tecnica = $post['flg_inspeccion_tecnica'];
+                $vehiculos->flg_soat = $post['flg_soat'];
 
                 $vehiculos->id_usuario_act = Yii::$app->user->getId();
                 $vehiculos->fecha_act = Utils::getFechaActual();
@@ -230,7 +239,8 @@ class DefaultController extends Controller
                 "version" => $row['version'],
                 "modelo" => $row['modelo'],
                 "matricula" => $row['matricula'],
-                "accion" => '<button class="btn btn-sm btn-light-success font-weight-bold mr-2" onclick="funcionEditar(' . $row["id_vehiculo"] . ')"><i class="flaticon-edit"></i>Editar</button>
+                "estado" => $row['estado'],
+                "accion" => '<button class="btn btn-sm btn-light-success font-weight-bold mr-2" onclick="funcionEditar(' . $row["id_vehiculo"] . ')"><i class="flaticon-edit"></i></button>
                               <button title="Eliminar" class="btn btn-sm btn-light-danger font-weight-bold mr-2" onclick="funcionEliminar(' . $row["id_vehiculo"] . ')"><i class="flaticon-delete"></i></button>',
             ];
         }
@@ -249,6 +259,145 @@ class DefaultController extends Controller
         ob_start();
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         Yii::$app->response->data = $json_data;
+    }
+
+    public function actionExportarPdf()
+    {
+        $pdf = new \FPDF();
+        $pdf->AddPage('P', 'A4');
+        $pdf->SetFont('ARIAL', 'B', 9);
+        $pdf->SetAutoPageBreak(true, 10);
+        if (1 == 1) {
+            $pdf->SetFont('ARIAL', 'B', 10);
+
+            $pdf->MultiCell(0, 3, "TOTAL VEHICULO", '', 'C');
+        }
+
+        $pdf->Ln(5);
+        $pdf->setX(0);
+        $pdf->Ln(5);
+        $pdf->SetFont('ARIAL', 'B', 9);
+
+        $pdf->Ln(5);
+        $pdf->SetTextColor(255);
+        $header3 = [utf8_decode("ITEM"), utf8_decode("MARCA"), utf8_decode("VERSION"), utf8_decode("MODELO"), utf8_decode("ESTADO")];
+
+        $command = Yii::$app->db->createCommand("SELECT marca, version, modelo, estado FROM vehiculos WHERE fecha_del is NULL");
+        $data = $command->queryAll();
+
+        self::tablaActaResultadoFInalPDF($pdf, $header3, $data);
+
+
+        $pdf->Ln();
+        // ob_start();
+        $pdf->Output();
+        exit;
+    }
+
+    public static function tablaActaResultadoFInalPDF($pdf, $header, $data)
+
+    {
+        $pdf->SetFont('', '', 5);
+        $w = array(30, 50, 30, 30, 30);
+        // Header
+        for ($i = 0; $i < count($header); $i++)
+            $pdf->Cell($w[$i], 6, $header[$i], 1, 0, 'C', true);
+        $pdf->Ln();
+
+        // Data
+        foreach ($data as $v => $row) {
+            $pdf->SetTextColor(0);
+            $pdf->Cell($w[0], 9, utf8_decode($v + 1), 1, 0, 'C');
+            $pdf->Cell($w[1], 9, utf8_decode($row["marca"]), 1, 0, 'C');
+            $pdf->Cell($w[2], 9, utf8_decode($row["version"]), 1, 0, 'C');
+            $pdf->Cell($w[3], 9, utf8_decode($row["modelo"]), 1, 0, 'C');
+            $pdf->Cell($w[4], 9, utf8_decode($row["estado"]), 1, 0, 'C');
+
+            $pdf->Ln();
+
+        }
+    }
+
+    public function actionExportar()
+    {
+
+        $command = Yii::$app->db->createCommand("SELECT marca, version, modelo, estado FROM vehiculos WHERE fecha_del is NULL");
+        $data = $command->queryAll();
+
+
+        $filename = "Total Vehiculo.xlsx";
+
+        $spreadsheet = new Spreadsheet();
+
+        $styleBorder = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                    'color' => ['rgb' => '000000'],
+                ],
+            ]
+        ];
+
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->mergeCells("B2:E2");
+        $sheet->setCellValue('B2', 'Total Vehiculo');
+        $sheet->getStyle('B2')->applyFromArray(['font' => ['bold' => true, 'size' => 20], 'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER,]]);
+
+        $sheet->getStyle('A6:E6')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('335593');
+        $sheet->getStyle('A6:E6')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+        $sheet->getPageSetup()->setScale(73);
+        $sheet->getPageSetup()
+            ->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+
+        $sheet->getPageSetup()->setHorizontalCentered(true);
+        $sheet->getPageSetup()->setVerticalCentered(false);
+
+        $sheet->getPageMargins()->setTop(0);
+        $sheet->getPageMargins()->setRight(0);
+        $sheet->getPageMargins()->setLeft(0);
+        $sheet->getPageMargins()->setBottom(0);
+
+
+        $sheet->setCellValue('A6', 'ITEM');
+        $sheet->setCellValue('B6', 'MARCA');
+        $sheet->setCellValue('C6', 'VERSION');
+        $sheet->setCellValue('D6', 'MODELO');
+        $sheet->setCellValue('E6', 'ESTADO');
+
+        $i = 7;
+        $nu = 1;
+        foreach ($data as $k => $v) {
+            $sheet->setCellValue('A' . $i, $nu.'');
+            $sheet->setCellValue('B' . $i, $v['marca']);
+            $sheet->setCellValue('C' . $i, $v['version']);
+            $sheet->setCellValue('D' . $i, $v['modelo']);
+            $sheet->setCellValue('E' . $i, $v['estado']);
+            $nu = ($nu + 1);
+            $i++;
+        }
+
+        $sheet->getStyle('A6' . ':E' . $i)->applyFromArray($styleBorder);
+
+        foreach (range('A', 'E') as $columnID) {
+            $sheet->getColumnDimension($columnID)
+                ->setAutoSize(true);
+        }
+
+        ///$drawing->setWorksheet($sheet);
+
+        $writer = IOFactory::createWriter($spreadsheet, "Xlsx");
+        $response = Yii::$app->getResponse();
+        $headers = $response->getHeaders();
+        $headers->set('Content-Type', 'application/vnd.ms-excel');
+        $headers->set('Content-Disposition', 'attachment;filename="' . $filename . '"');
+
+        ob_start();
+        $writer->save("php://output");
+        $content = ob_get_contents();
+        ob_clean();
+        return $content;
     }
 
 }

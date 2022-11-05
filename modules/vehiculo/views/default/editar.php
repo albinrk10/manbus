@@ -8,15 +8,18 @@
         </div>
         <div class="form-group col-md-3">
             <label>Version<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="" name="version" id="version" value="<?= $vehiculos->version ?>"/>
+            <input type="text" class="form-control" placeholder="" name="version" id="version"
+                   value="<?= $vehiculos->version ?>"/>
         </div>
         <div class="form-group col-md-2">
             <label>Modelo<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="" name="modelo" id="modelo" value="<?= $vehiculos->modelo ?>" />
+            <input type="text" class="form-control" placeholder="" name="modelo" id="modelo"
+                   value="<?= $vehiculos->modelo ?>"/>
         </div>
         <div class="form-group col-md-2">
             <label>Matricula<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" placeholder="" name="matricula" id="matricula" value="<?= $vehiculos->matricula ?>" />
+            <input type="text" class="form-control" placeholder="" name="matricula" id="matricula"
+                   value="<?= $vehiculos->matricula ?>"/>
         </div>
 
         <div class="form-group col-md-2">
@@ -37,7 +40,8 @@
         <div class="form-group col-md-3">
             <label>Medidas Neumaticos<span class="text-danger">*</span></label>
             <input type="text" class="form-control"
-                   placeholder="" name="medida_neumatico" id="medida_neumatico" value="<?= $vehiculos->medidas_neumaticos ?>"/>
+                   placeholder="" name="medida_neumatico" id="medida_neumatico"
+                   value="<?= $vehiculos->medidas_neumaticos ?>"/>
         </div>
 
         <div class="form-group col-md-2">
@@ -68,7 +72,7 @@
             <label>Tipo Motor<span class="text-danger">*</span></label>
             <input type="text"
                    class="form-control" placeholder=""
-                   name="tipo_motor" id="tipo_motor" value="<?= $vehiculos->tipo_motor ?>" />
+                   name="tipo_motor" id="tipo_motor" value="<?= $vehiculos->tipo_motor ?>"/>
         </div>
         <div class="form-group col-md-2">
             <label>N° Cilindros<span class="text-danger">*</span></label>
@@ -78,28 +82,25 @@
         </div>
 
         <div class="form-group col-md-3">
-            <label> Potencia en  CV<span class="text-danger">*</span></label>
+            <label> Potencia en CV<span class="text-danger">*</span></label>
             <input type="text"
                    class="form-control"
-                   name="potencia_expresada_en_cv" id="potencia_expresada_en_cv" value="<?= $vehiculos->potencia_expresada_en_cv ?>"/>
+                   name="potencia_expresada_en_cv" id="potencia_expresada_en_cv"
+                   value="<?= $vehiculos->potencia_expresada_en_cv ?>"/>
         </div>
         <div class="form-group col-md-3">
             <label>Potencia en KW<span class="text-danger">*</span></label>
             <input type="text"
                    class="form-control"
-                   name="potencia_expresada_en_kw" id="potencia_expresada_en_kw" value="<?= $vehiculos->potencia_expresada_en_kw ?>"/>
+                   name="potencia_expresada_en_kw" id="potencia_expresada_en_kw"
+                   value="<?= $vehiculos->potencia_expresada_en_kw ?>"/>
         </div>
         <div class="form-group col-md-2">
             <label>N° Bastidor<span class="text-danger">*</span></label>
             <input type="text"
                    class="form-control"
-                   name="numero_bastidor" id="numero_bastidor" value="<?= $vehiculos->numero_bastidor ?>" />
+                   name="numero_bastidor" id="numero_bastidor" value="<?= $vehiculos->numero_bastidor ?>"/>
         </div>
-    </div>
-
-    <div class="row">
-
-
     </div>
 
     <div class="row">
@@ -108,14 +109,14 @@
             <input type="text"
                    class="form-control"
                    name="numero_plazas"
-                   id="numero_plazas" value="<?= $vehiculos->numero_plazas ?>" />
+                   id="numero_plazas" value="<?= $vehiculos->numero_plazas ?>"/>
         </div>
 
         <div class="form-group col-md-3">
             <label>Descripcion<span class="text-danger">*</span></label>
             <input type="text"
                    class="form-control"
-                   name="descripcion" id="descripcion" value="<?= $vehiculos->descripcion ?>" />
+                   name="descripcion" id="descripcion" value="<?= $vehiculos->descripcion ?>"/>
         </div>
         <div class="form-group col-md-3">
             <label>Incripcion<span class="text-danger">*</span></label>
@@ -128,10 +129,48 @@
             <input type="text"
                    class="form-control"
                    name="config_vehicular"
-                   id="config_vehicular" value="<?= $vehiculos->config_vehicular ?>" />
+                   id="config_vehicular" value="<?= $vehiculos->config_vehicular ?>"/>
         </div>
     </div>
-   
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Estado<span class="text-danger">*</span></label>
+            <select class="form-control select2" id="estado" name="estado" style="width: 100%;">
+                <option value="Operativo" <?= $vehiculos->estado == 'Operativo' ? 'selected' : '' ?>>
+                    Operativo
+                </option>
+                <option value="Inoperativo" <?= $vehiculos->estado == 'Inoperativo' ? 'selected' : '' ?>>
+                    Inoperativo
+                </option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-form-label">Inspeccion tecnico</label>
+            <div class="col-3">
+                    <span class="switch switch-icon">
+                        <label>
+                            <input type="checkbox" <?= ($vehiculos->flg_inspeccion_tecnica == 1 ? "checked " : "") ?> name="flg_inspeccion_tecnica"
+                                   id="flg_inspeccion_tecnica"/>
+                            <span></span>
+                        </label>
+                    </span>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="col-form-label">Soat con vigencia </label>
+            <div class="col-3">
+                    <span class="switch switch-icon">
+                        <label>
+                            <input type="checkbox" <?= ($vehiculos->flg_soat == 1 ? "checked " : "") ?> name="flg_soat"
+                                   id="flg_soat"/>
+                            <span></span>
+                        </label>
+                    </span>
+            </div>
+        </div>
+    </div>
+
     <hr>
     <button class="btn btn-primary mr-2" id="btn-guardar">Actualizar</button>
     <a class="btn btn-secondary" id="btn-cancelar">Cancelar</a>

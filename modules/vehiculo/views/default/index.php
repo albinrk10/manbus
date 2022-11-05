@@ -12,6 +12,21 @@ $bundle = VehiculoAsset::register($this);
         </div>
         <div class="card-toolbar">
             <!--begin::Button-->
+            <a href="/manbus/web/vehiculo/default/exportar-pdf" target="_blank" class="btn btn-success">
+                <i class="text-white flaticon-download"></i>
+                Reporte pdf
+            </a>
+            &nbsp;
+            <a href="/manbus/web/vehiculo/default/exportar" target="_blank" class="btn btn-success">
+                <i class="text-white flaticon-download"></i>
+                Reporte excel
+            </a>
+            &nbsp;
+            <a href="/manbus/web/vehiculo/default/exportar" target="_blank" class="btn btn-success">
+                <i class="text-white flaticon-download"></i>
+                Reporte csv
+            </a>
+            &nbsp;
             <button id="modal-vehiculosn" class="btn btn-primary">
                 <i class="text-white flaticon-graphic-1"></i>
                 Registrar Vehiculos
