@@ -5,7 +5,7 @@
     <h1 align="center">Yii 2 Proyecto Integrador UTP</h1>
     <br>
 </p>
-.
+
 
 CLONAR PROYECTO A MAQUINA LOCAL
 -------------------
