@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "mantenimiento".
+ * This is the model class for table "combustible".
  *
- * @property int $id_mantenimiento
- * @property int $id_vehiculo
+ * @property int $id_combustible
+ * @property string $codigo_combustible
+ * @property string $nombre
  * @property string $descripcion
- * @property string $fecha
  * @property int $id_usuario_reg
  * @property string $fecha_reg
  * @property string $ipmaq_reg
@@ -20,17 +20,15 @@ use Yii;
  * @property int $id_usuario_del
  * @property string $fecha_del
  * @property string $ipmaq_del
- * @property string $fecha_fin
- * @property string $comentario
  */
-class Mantenimiento extends \yii\db\ActiveRecord
+class Combustible extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'mantenimiento';
+        return 'combustible';
     }
 
     /**
@@ -39,10 +37,12 @@ class Mantenimiento extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_vehiculo', 'id_usuario_reg', 'fecha_reg', 'ipmaq_reg'], 'required'],
-            [['id_vehiculo', 'id_usuario_reg', 'id_usuario_act', 'id_usuario_del'], 'integer'],
-            [['fecha', 'fecha_reg', 'fecha_act', 'fecha_del', 'fecha_fin'], 'safe'],
-            [['descripcion', 'comentario'], 'string', 'max' => 200],
+            [['codigo_combustible', 'nombre', 'descripcion', 'id_usuario_reg', 'fecha_reg'], 'required'],
+            [['id_usuario_reg', 'id_usuario_act', 'id_usuario_del'], 'integer'],
+            [['fecha_reg', 'fecha_act', 'fecha_del'], 'safe'],
+            [['codigo_combustible'], 'string', 'max' => 10],
+            [['nombre'], 'string', 'max' => 100],
+            [['descripcion'], 'string', 'max' => 200],
             [['ipmaq_reg', 'ipmaq_act', 'ipmaq_del'], 'string', 'max' => 20],
         ];
     }
@@ -53,10 +53,10 @@ class Mantenimiento extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_mantenimiento' => 'Id Mantenimiento',
-            'id_vehiculo' => 'Id Vehiculo',
+            'id_combustible' => 'Id Combustible',
+            'codigo_combustible' => 'Codigo Combustible',
+            'nombre' => 'Nombre',
             'descripcion' => 'Descripcion',
-            'fecha' => 'Fecha',
             'id_usuario_reg' => 'Id Usuario Reg',
             'fecha_reg' => 'Fecha Reg',
             'ipmaq_reg' => 'Ipmaq Reg',
@@ -66,8 +66,6 @@ class Mantenimiento extends \yii\db\ActiveRecord
             'id_usuario_del' => 'Id Usuario Del',
             'fecha_del' => 'Fecha Del',
             'ipmaq_del' => 'Ipmaq Del',
-            'fecha_fin' => 'Fecha Fin',
-            'comentario' => 'Comentario',
         ];
     }
 }

@@ -45,7 +45,7 @@ use Yii;
  * @property int $flg_soat
  * @property int $id_combustible
  */
-class Vehiculo extends \yii\db\ActiveRecord
+class Vehiculos extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

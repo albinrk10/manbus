@@ -31,6 +31,8 @@ function funcionEditarMantenimiento(id) {
                         var vehiculo = $("#vehiculo").val();
                         var descripcion = $("#descripcion").val();
                         var fecha = $("#fecha").val();
+                        var fecha_fin = $("#fecha_fin").val();
+                        var comentario = $("#comentario").val();
 
                         $.ajax({
                             type: "POST",
@@ -41,7 +43,9 @@ function funcionEditarMantenimiento(id) {
                                 id_mantenimiento: id,
                                 vehiculo: vehiculo,
                                 descripcion: descripcion,
-                                fecha: fecha
+                                fecha: fecha,
+                                fecha_fin: fecha_fin,
+                                comentario: comentario
                             },
                             success: function (response) {
                                 if (response) {

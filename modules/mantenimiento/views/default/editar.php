@@ -18,6 +18,16 @@
             <textarea type="text" class="form-control" placeholder="" name="descripcion"
                       id="descripcion"><?= $mantenimiento->descripcion ?></textarea>
         </div>
+        <div class="form-group col-md-12">
+            <label>Fecha Fin</label>
+            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin"
+                   value="<?= $mantenimiento->fecha_fin ?>"/>
+        </div>
+        <div class="form-group col-md-12">
+            <label>Comentario mantenimiento</label>
+            <textarea type="text" class="form-control" placeholder="" name="comentario"
+                      id="comentario"><?= $mantenimiento->comentario ?></textarea>
+        </div>
     </div>
 
     <hr>

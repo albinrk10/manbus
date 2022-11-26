@@ -3,6 +3,7 @@
 namespace app\modules\vehiculo\controllers;
 
 use app\components\Utils;
+use app\models\Combustible;
 use app\models\Vehiculo;
 use app\models\Vehiculos;
 use app\models\Vehiculosn;
@@ -38,7 +39,10 @@ class DefaultController extends Controller
 
     public function actionGetModal()
     {
-        $plantilla = Yii::$app->controller->renderPartial("crear", []);
+        $combustible = Combustible::find()->where(["fecha_del" => null])->all();
+        $plantilla = Yii::$app->controller->renderPartial("crear", [
+            "combustible" => $combustible
+        ]);
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         Yii::$app->response->data = ["plantilla" => $plantilla];
     }
@@ -76,6 +80,7 @@ class DefaultController extends Controller
                 $vehiculos->config_vehicular = $post['config_vehicular'];
                 $vehiculos->tara = $post['tara'];
                 $vehiculos->estado = $post['estado'];
+                $vehiculos->id_combustible = $post['combustible'];
 
                 $vehiculos->flg_estado = Utils::ACTIVO;
                 $vehiculos->id_usuario_reg = Yii::$app->user->getId();
@@ -103,9 +108,10 @@ class DefaultController extends Controller
     public function actionGetModalEdit($id)
     {
         $data = Vehiculo::findOne($id);
-
+        $combustible = Combustible::find()->where(["fecha_del" => null])->all();
         $plantilla = Yii::$app->controller->renderPartial("editar", [
             "vehiculos" => $data,
+            "combustible" => $combustible
         ]);
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         Yii::$app->response->data = ["plantilla" => $plantilla];
@@ -154,6 +160,7 @@ class DefaultController extends Controller
                 $vehiculos->estado = $post['estado'];
                 $vehiculos->flg_inspeccion_tecnica = $post['flg_inspeccion_tecnica'];
                 $vehiculos->flg_soat = $post['flg_soat'];
+                $vehiculos->id_combustible = $post['combustible'];
 
                 $vehiculos->id_usuario_act = Yii::$app->user->getId();
                 $vehiculos->fecha_act = Utils::getFechaActual();
@@ -239,6 +246,7 @@ class DefaultController extends Controller
                 "version" => $row['version'],
                 "modelo" => $row['modelo'],
                 "matricula" => $row['matricula'],
+                "combustible" => $row['combustible'],
                 "estado" => $row['estado'],
                 "accion" => '<button class="btn btn-sm btn-light-success font-weight-bold mr-2" onclick="funcionEditar(' . $row["id_vehiculo"] . ')"><i class="flaticon-edit"></i></button>
                               <button title="Eliminar" class="btn btn-sm btn-light-danger font-weight-bold mr-2" onclick="funcionEliminar(' . $row["id_vehiculo"] . ')"><i class="flaticon-delete"></i></button>',
@@ -369,7 +377,7 @@ class DefaultController extends Controller
         $i = 7;
         $nu = 1;
         foreach ($data as $k => $v) {
-            $sheet->setCellValue('A' . $i, $nu.'');
+            $sheet->setCellValue('A' . $i, $nu . '');
             $sheet->setCellValue('B' . $i, $v['marca']);
             $sheet->setCellValue('C' . $i, $v['version']);
             $sheet->setCellValue('D' . $i, $v['modelo']);

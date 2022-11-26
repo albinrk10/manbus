@@ -19,11 +19,15 @@ var columnas = [
 
     {
         field: "matricula",
-        title: "Matricula"
+        title: "Placa"
     },
     {
         field: "estado",
         title: "Estado"
+    },
+    {
+        field: "combustible",
+        title: "Combustible"
     },
     {
         field: "accion",

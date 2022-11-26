@@ -53,4 +53,7 @@ return [
     'dashboard' => [
         'class' => 'app\modules\dashboard\Dashboard',
     ],
+    'combustible' => [
+        'class' => 'app\modules\combustible\Combustible',
+    ],
 ];

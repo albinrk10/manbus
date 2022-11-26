@@ -16,6 +16,10 @@ var columnas = [
         title: "Fecha"
     },
     {
+        field: "estado",
+        title: "Estado"
+    },
+    {
         field: "accion",
         title: "Acciones",
         width: 210

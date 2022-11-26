@@ -15,6 +15,10 @@ $("#modal-vehiculosn").on("click", function () {
             placeholder: "Seleccione Estado"
         })
 
+        $("#combustible").select2({
+            placeholder: "Seleccione Combustible"
+        })
+
         $(document).ready(function () {
             $("#btn-guardarv").click(function () {
                 $("#form-vehiculosn").validate({
@@ -37,6 +41,7 @@ $("#modal-vehiculosn").on("click", function () {
                         descripcion: "required",
                         incripcion: "required",
                         config_vehicular: "required",
+                        combustible: "required",
 
                     },
                     messages: {
@@ -58,7 +63,8 @@ $("#modal-vehiculosn").on("click", function () {
                         numero_plazas: "Por favor ingrese datos",
                         descripcion: "Por favor ingrese datos",
                         incripcion: "Por favor ingrese datos",
-                        config_vehicular: "Por favor ingrese datos"
+                        config_vehicular: "Por favor ingrese datos",
+                        combustible: "Por favor ingrese datos"
                     },
                     submitHandler: function () {
 
@@ -82,6 +88,7 @@ $("#modal-vehiculosn").on("click", function () {
                         var config_vehicular = $("#config_vehicular").val();
                         var tara = $("#tara").val();
                         var estado = $("#estado").val();
+                        var combustible = $("#combustible").val();
                         var flg_inspeccion_tecnica = $('#flg_inspeccion_tecnica').prop('checked');
                         var flg_soat = $('#flg_soat').prop('checked');
 
@@ -111,11 +118,11 @@ $("#modal-vehiculosn").on("click", function () {
                                 tara: tara,
                                 config_vehicular: config_vehicular,
                                 estado: estado,
+                                combustible: combustible,
                                 flg_inspeccion_tecnica: (flg_inspeccion_tecnica) ? 1 : 0,
                                 flg_soat: (flg_soat) ? 1 : 0
                             },
                             success: function (response) {
-
                                 if (response) {
                                     console.log(response);
                                     notificacion('Accion realizada con exito', 'success');

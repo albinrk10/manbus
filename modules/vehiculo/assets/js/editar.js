@@ -20,6 +20,10 @@ function funcionEditar(id) {
             placeholder: "Seleccione Estado"
         })
 
+        $("#combustible").select2({
+            placeholder: "Seleccione Combustible"
+        })
+
         $(document).ready(function () {
             $("#btn-guardar").click(function () {
                 $("#form-vehiculosn").validate({
@@ -28,6 +32,7 @@ function funcionEditar(id) {
                         placa: "required",
                         descripcion: "required",
                         inscripcion: "required",
+                        combustible: "required",
 
                     },
                     messages: {
@@ -35,6 +40,7 @@ function funcionEditar(id) {
                         placa: "Por favor ingrese datos",
                         descripcion: "Por favor ingrese datos",
                         inscripcion: "Por favor ingrese datos",
+                        combustible: "Por favor ingrese datos",
 
                     },
                     submitHandler: function () {
@@ -58,6 +64,7 @@ function funcionEditar(id) {
                         var config_vehicular = $("#config_vehicular").val();
                         var tara = $("#tara").val();
                         var estado = $("#estado").val();
+                        var combustible = $("#combustible").val();
                         var flg_inspeccion_tecnica = $('#flg_inspeccion_tecnica').prop('checked');
                         var flg_soat = $('#flg_soat').prop('checked');
 
@@ -89,6 +96,7 @@ function funcionEditar(id) {
                                 tara: tara,
                                 config_vehicular: config_vehicular,
                                 estado: estado,
+                                combustible: combustible,
                                 flg_inspeccion_tecnica: (flg_inspeccion_tecnica) ? 1 : 0,
                                 flg_soat: (flg_soat) ? 1 : 0
                             },
