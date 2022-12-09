@@ -287,7 +287,7 @@ CREATE TABLE `modulo` (
   `fecha_del` datetime DEFAULT NULL,
   `ipmaq_del` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_modulo`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +296,7 @@ CREATE TABLE `modulo` (
 
 LOCK TABLES `modulo` WRITE;
 /*!40000 ALTER TABLE `modulo` DISABLE KEYS */;
-INSERT INTO `modulo` VALUES (1,'Seguridad','seguridad',1,'2021-04-30 20:22:03','::1',NULL,NULL,NULL,NULL,NULL,NULL),(2,'Persona','persona',1,'2021-04-30 20:40:54','::1',1,'2021-05-02 15:04:06','::1',NULL,NULL,NULL),(14,'etrt','ert200',1,'2022-09-09 23:56:07','127.0.0.1',1,'2022-09-09 23:56:28','127.0.0.1',1,'2022-09-09 23:56:34','127.0.0.1'),(15,'Producto','producto',1,'2022-09-27 19:37:53','127.0.0.1',1,'2022-09-28 00:44:23','127.0.0.1',NULL,NULL,NULL),(16,'Taller','taller',1,'2022-09-27 19:38:01','127.0.0.1',1,'2022-09-28 00:44:31','127.0.0.1',NULL,NULL,NULL),(17,'Almacen','almacen',1,'2022-09-27 22:34:21','127.0.0.1',1,'2022-09-28 00:44:37','127.0.0.1',NULL,NULL,NULL),(18,'Vehiculo','vehiculo',1,'2022-09-28 20:20:07','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(19,'Diagnostico','diagnostico',1,'2022-11-01 18:13:43','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(20,'Mantenimiento','mantenimiento',1,'2022-11-04 23:50:30','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(21,'Choque / siniestro vehicular','choque',1,'2022-11-05 00:28:55','127.0.0.1',1,'2022-11-05 00:29:15','127.0.0.1',NULL,NULL,NULL),(22,'Dashboard','dashboard',1,'2022-11-05 01:03:21','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(23,'Combustible','combustible',1,'2022-11-24 22:13:03','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `modulo` VALUES (1,'Seguridad','seguridad',1,'2021-04-30 20:22:03','::1',NULL,NULL,NULL,NULL,NULL,NULL),(2,'Persona','persona',1,'2021-04-30 20:40:54','::1',1,'2021-05-02 15:04:06','::1',NULL,NULL,NULL),(14,'etrt','ert200',1,'2022-09-09 23:56:07','127.0.0.1',1,'2022-09-09 23:56:28','127.0.0.1',1,'2022-09-09 23:56:34','127.0.0.1'),(15,'Producto','producto',1,'2022-09-27 19:37:53','127.0.0.1',1,'2022-09-28 00:44:23','127.0.0.1',NULL,NULL,NULL),(16,'Taller','taller',1,'2022-09-27 19:38:01','127.0.0.1',1,'2022-09-28 00:44:31','127.0.0.1',NULL,NULL,NULL),(17,'Almacen','almacen',1,'2022-09-27 22:34:21','127.0.0.1',1,'2022-09-28 00:44:37','127.0.0.1',NULL,NULL,NULL),(18,'Vehiculo','vehiculo',1,'2022-09-28 20:20:07','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(19,'Diagnostico','diagnostico',1,'2022-11-01 18:13:43','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(20,'Mantenimiento','mantenimiento',1,'2022-11-04 23:50:30','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(21,'Choque / siniestro vehicular','choque',1,'2022-11-05 00:28:55','127.0.0.1',1,'2022-11-05 00:29:15','127.0.0.1',NULL,NULL,NULL),(22,'Dashboard','dashboard',1,'2022-11-05 01:03:21','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(23,'Tipo Combustible','combustible',1,'2022-11-24 22:13:03','127.0.0.1',1,'2022-12-08 22:42:41','127.0.0.1',NULL,NULL,NULL),(24,'Vehículo Combustible','vehiculoCombustible',1,'2022-12-08 21:49:26','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `modulo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +369,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
-INSERT INTO `rol` VALUES (1,'administrador','prueba',1,1,'2021-04-30 22:41:48','::1',1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL),(5,'asdad','asdasd2020',1,1,'2022-09-09 23:53:31','127.0.0.1',1,'2022-09-09 23:54:07','127.0.0.1',NULL,NULL,NULL);
+INSERT INTO `rol` VALUES (1,'administrador','prueba',1,1,'2021-04-30 22:41:48','::1',1,'2022-12-08 21:49:31','127.0.0.1',NULL,NULL,NULL),(5,'asdad','asdasd2020',1,1,'2022-09-09 23:53:31','127.0.0.1',1,'2022-09-09 23:54:07','127.0.0.1',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +394,7 @@ CREATE TABLE `rol_modulo` (
   `fecha_del` datetime DEFAULT NULL,
   `ipmaq_del` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_rol_modulo`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,7 +403,7 @@ CREATE TABLE `rol_modulo` (
 
 LOCK TABLES `rol_modulo` WRITE;
 /*!40000 ALTER TABLE `rol_modulo` DISABLE KEYS */;
-INSERT INTO `rol_modulo` VALUES (167,1,1,1,'2022-08-30 21:25:21','::1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(168,1,2,1,'2022-08-30 21:25:21','::1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(169,5,1,1,'2022-09-09 23:53:31','127.0.0.1',NULL,NULL,NULL,1,'2022-09-09 23:54:07','127.0.0.1'),(170,5,1,1,'2022-09-09 23:54:07','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(171,1,1,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(172,1,2,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(173,1,15,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(174,1,16,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(175,1,1,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(176,1,2,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(177,1,15,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(178,1,16,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(179,1,17,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(180,1,1,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(181,1,2,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(182,1,15,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(183,1,16,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(184,1,17,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(185,1,18,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(186,1,1,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(187,1,2,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(188,1,15,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(189,1,16,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(190,1,17,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(191,1,18,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(192,1,19,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(193,1,1,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(194,1,2,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(195,1,15,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(196,1,16,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(197,1,17,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(198,1,18,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(199,1,19,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(200,1,20,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(201,1,1,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(202,1,2,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(203,1,15,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(204,1,16,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(205,1,17,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(206,1,18,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(207,1,19,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(208,1,20,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(209,1,21,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(210,1,1,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(211,1,2,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(212,1,15,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(213,1,16,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(214,1,17,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(215,1,18,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(216,1,19,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(217,1,20,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(218,1,21,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(219,1,22,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-11-24 22:13:10','127.0.0.1'),(220,1,1,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(221,1,2,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(222,1,15,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(223,1,16,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(224,1,17,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(225,1,18,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(226,1,19,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(227,1,20,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(228,1,21,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(229,1,22,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(230,1,23,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `rol_modulo` VALUES (167,1,1,1,'2022-08-30 21:25:21','::1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(168,1,2,1,'2022-08-30 21:25:21','::1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(169,5,1,1,'2022-09-09 23:53:31','127.0.0.1',NULL,NULL,NULL,1,'2022-09-09 23:54:07','127.0.0.1'),(170,5,1,1,'2022-09-09 23:54:07','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(171,1,1,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(172,1,2,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(173,1,15,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(174,1,16,1,'2022-09-27 19:38:09','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(175,1,1,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(176,1,2,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(177,1,15,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(178,1,16,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(179,1,17,1,'2022-09-27 22:34:27','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(180,1,1,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(181,1,2,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(182,1,15,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(183,1,16,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(184,1,17,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(185,1,18,1,'2022-09-28 20:20:13','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(186,1,1,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(187,1,2,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(188,1,15,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(189,1,16,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(190,1,17,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(191,1,18,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(192,1,19,1,'2022-11-01 18:13:50','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(193,1,1,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(194,1,2,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(195,1,15,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(196,1,16,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(197,1,17,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(198,1,18,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(199,1,19,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(200,1,20,1,'2022-11-04 23:50:37','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(201,1,1,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(202,1,2,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(203,1,15,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(204,1,16,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(205,1,17,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(206,1,18,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(207,1,19,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(208,1,20,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(209,1,21,1,'2022-11-05 00:29:02','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(210,1,1,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(211,1,2,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(212,1,15,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(213,1,16,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(214,1,17,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(215,1,18,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(216,1,19,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(217,1,20,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(218,1,21,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(219,1,22,1,'2022-11-05 01:07:12','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(220,1,1,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(221,1,2,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(222,1,15,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(223,1,16,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(224,1,17,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(225,1,18,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(226,1,19,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(227,1,20,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(228,1,21,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(229,1,22,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(230,1,23,1,'2022-11-24 22:13:10','127.0.0.1',NULL,NULL,NULL,1,'2022-12-08 21:49:32','127.0.0.1'),(231,1,1,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(232,1,2,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(233,1,15,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(234,1,16,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(235,1,17,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(236,1,18,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(237,1,19,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(238,1,20,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(239,1,21,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(240,1,22,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(241,1,23,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL),(242,1,24,1,'2022-12-08 21:49:32','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `rol_modulo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,6 +480,41 @@ LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` VALUES (1,1,15,1,'admin','$2y$13$AzSu7ICHHQQo7durNWiSju29o9CNOKhynuXmp1RnAE2thoZppAQiW','franklin.asto.leon@gmail.com',1,'2021-04-30 01:16:30','a',1,'2021-06-29 23:51:59','::1',NULL,NULL,NULL,1),(10,1,NULL,1,'admin1','$2y$13$pY8ebvvP9Ih2hw32aS63RuW0Oy5QYiS6uecuZVQEb9EZ/Kml.ta4i','franklin.asto.leon@gmail.com',1,'2022-09-10 00:01:37','127.0.0.1',1,'2022-09-10 00:03:46','127.0.0.1',1,'2022-09-10 00:03:52','127.0.0.1',0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehiculo_combustible`
+--
+
+DROP TABLE IF EXISTS `vehiculo_combustible`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vehiculo_combustible` (
+  `id_vehiculo_combustible` int(11) NOT NULL AUTO_INCREMENT,
+  `id_vehiculo` int(11) NOT NULL,
+  `id_combustible` int(11) NOT NULL,
+  `kilometraje` decimal(8,2) NOT NULL,
+  `id_usuario_reg` int(11) NOT NULL,
+  `fecha_reg` datetime NOT NULL,
+  `ipmaq_reg` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_act` int(11) DEFAULT NULL,
+  `fecha_act` datetime DEFAULT NULL,
+  `ipmaq_act` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_usuario_del` int(11) DEFAULT NULL,
+  `fecha_del` datetime DEFAULT NULL,
+  `ipmaq_del` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_vehiculo_combustible`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehiculo_combustible`
+--
+
+LOCK TABLES `vehiculo_combustible` WRITE;
+/*!40000 ALTER TABLE `vehiculo_combustible` DISABLE KEYS */;
+INSERT INTO `vehiculo_combustible` VALUES (1,1,1,150.51,1,'2022-12-08 22:30:45','127.0.0.1',1,'2022-12-08 22:40:46','127.0.0.1',1,'2022-12-08 22:41:48','127.0.0.1'),(2,3,3,150.00,1,'2022-12-08 22:45:56','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `vehiculo_combustible` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -580,52 +615,29 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoAlmacen`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
-BEGIN
-
-
-
-    declare totalRegistro int;
-
-
-
-    select
-
-        a.id_almacen,
-
-        p.codigo_producto,
-
-        p.nombre,
-
-        a.fecha_ingreso,
-
-        a.cantidad_entrada,
-
-        a.cantidad_salida,
-
-        a.cantidad_actual
-
-    from almacen a
-
-        inner join producto p on a.id_producto = p.id_producto
-
-    where a.fecha_del is null
-
-      and concat(p.codigo_producto, ' ', p.nombre) like concat('%', busca, '%')
-
-    LIMIT row1,length1;
-
-
-
-    set totalRegistro = (select count(*) from almacen a inner join producto p on a.id_producto = p.id_producto
-
-                         where a.fecha_del is null
-
-                           and concat(p.codigo_producto, ' ', p.nombre) like concat('%', busca, '%'));
-
-
-
-    select totalRegistro INTO total;
-
+BEGIN
+
+    declare totalRegistro int;
+
+    select
+        a.id_almacen,
+        p.codigo_producto,
+        p.nombre,
+        a.fecha_ingreso,
+        a.cantidad_entrada,
+        a.cantidad_salida,
+        a.cantidad_actual
+    from almacen a
+        inner join producto p on a.id_producto = p.id_producto
+    where a.fecha_del is null
+      and concat(p.codigo_producto, ' ', p.nombre) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*) from almacen a inner join producto p on a.id_producto = p.id_producto
+                         where a.fecha_del is null
+                           and concat(p.codigo_producto, ' ', p.nombre) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -643,54 +655,30 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoChoque`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
-BEGIN
-
-
-
-    declare totalRegistro int;
-
-
-
-    select m.id_choque,
-
-           v.marca,
-
-           v.version,
-
-           v.modelo,
-
-           v.matricula,
-
-           v.denominacion_comercial,
-
-           m.fecha,
-
-           m.detalle
-
-    from choque m
-
-             inner join vehiculos v on m.id_vehiculo = v.id_vehiculo
-
-    where m.fecha_del is null
-
-      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',m.detalle) like concat('%', busca, '%')
-
-    LIMIT row1,length1;
-
-
-
-    set totalRegistro = (select count(*)
-
-                         from choque d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
-
-                         where d.fecha_del is null
-
-                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.detalle) like concat('%', busca, '%'));
-
-
-
-    select totalRegistro INTO total;
-
+BEGIN
+
+    declare totalRegistro int;
+
+    select m.id_choque,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           m.fecha,
+           m.detalle
+    from choque m
+             inner join vehiculos v on m.id_vehiculo = v.id_vehiculo
+    where m.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',m.detalle) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from choque d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+                         where d.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.detalle) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -708,44 +696,25 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoCombustible`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
-BEGIN
-
-
-
-    declare totalRegistro int;
-
-
-
-    select id_combustible,
-
-           codigo_combustible,
-
-           nombre,
-
-           descripcion
-
-    from combustible
-
-    where fecha_del is null
-
-      and concat(codigo_combustible, ' ', nombre) like concat('%', busca, '%')
-
-    LIMIT row1,length1;
-
-
-
-    set totalRegistro = (select count(*)
-
-                         from combustible
-
-                         where fecha_del is null
-
-                           and concat(codigo_combustible, ' ', nombre) like concat('%', busca, '%'));
-
-
-
-    select totalRegistro INTO total;
-
+BEGIN
+
+    declare totalRegistro int;
+
+    select id_combustible,
+           codigo_combustible,
+           nombre,
+           descripcion
+    from combustible
+    where fecha_del is null
+      and concat(codigo_combustible, ' ', nombre) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from combustible
+                         where fecha_del is null
+                           and concat(codigo_combustible, ' ', nombre) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -763,52 +732,29 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoDiagnostico`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
-BEGIN
-
-
-
-    declare totalRegistro int;
-
-
-
-    select d.id_diagnostico,
-
-           v.marca,
-
-           v.version,
-
-           v.modelo,
-
-           v.matricula,
-
-           v.denominacion_comercial,
-
-           d.descripcion
-
-    from diagnostico d
-
-             inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
-
-    where d.fecha_del is null
-
-      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%')
-
-    LIMIT row1,length1;
-
-
-
-    set totalRegistro = (select count(*)
-
-                         from diagnostico d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
-
-                         where d.fecha_del is null
-
-                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%'));
-
-
-
-    select totalRegistro INTO total;
-
+BEGIN
+
+    declare totalRegistro int;
+
+    select d.id_diagnostico,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           d.descripcion
+    from diagnostico d
+             inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+    where d.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from diagnostico d inner join vehiculos v on d.id_vehiculo = v.id_vehiculo
+                         where d.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',d.descripcion) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -921,50 +867,28 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoProducto`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
-BEGIN
-
-
-
-    declare totalRegistro int;
-
-
-
-    select id_producto,
-
-           codigo_producto,
-
-           nombre,
-
-           descripcion,
-
-           estado,
-
-           precio,
-
-           stock
-
-    from producto
-
-    where fecha_del is null
-
-      and concat(codigo_producto, ' ', nombre) like concat('%', busca, '%')
-
-    LIMIT row1,length1;
-
-
-
-    set totalRegistro = (select count(*)
-
-                         from producto
-
-                         where fecha_del is null
-
-                           and concat(codigo_producto, ' ', nombre) like concat('%', busca, '%'));
-
-
-
-    select totalRegistro INTO total;
-
+BEGIN
+
+    declare totalRegistro int;
+
+    select id_producto,
+           codigo_producto,
+           nombre,
+           descripcion,
+           estado,
+           precio,
+           stock
+    from producto
+    where fecha_del is null
+      and concat(codigo_producto, ' ', nombre) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from producto
+                         where fecha_del is null
+                           and concat(codigo_producto, ' ', nombre) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1059,6 +983,52 @@ BEGIN
       and concat(u.id_usuario, ' ', u.usuario, ' ', pe.nombre_rol, ' ', p.nombres, ' ', p.apellido_paterno, ' ',
                  p.apellido_materno) like concat('%', busca, '%')
     LIMIT row1,length1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `listadoVehiculoCombustible` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listadoVehiculoCombustible`(IN row1 int, IN length1 int, IN busca varchar(200), OUT total int)
+BEGIN
+
+    declare totalRegistro int;
+
+    select vc.id_vehiculo_combustible,
+           v.marca,
+           v.version,
+           v.modelo,
+           v.matricula,
+           v.denominacion_comercial,
+           c.nombre,
+           vc.kilometraje
+    from vehiculo_combustible vc
+             inner join combustible c on vc.id_combustible = c.id_combustible
+             inner join vehiculos v on vc.id_combustible = v.id_combustible
+    where vc.fecha_del is null
+      and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ', v.denominacion_comercial, ' ',
+                 c.nombre) like concat('%', busca, '%')
+    LIMIT row1,length1;
+
+    set totalRegistro = (select count(*)
+                         from vehiculo_combustible vc
+                                  inner join combustible c on vc.id_combustible = c.id_combustible
+                                  inner join vehiculos v on vc.id_combustible = v.id_combustible
+                         where vc.fecha_del is null
+                           and concat(v.marca, ' ', v.version, ' ', v.modelo, ' ', v.matricula, ' ',
+                                      v.denominacion_comercial, ' ', c.nombre) like concat('%', busca, '%'));
+
+    select totalRegistro INTO total;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1181,4 +1151,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-25 20:24:32
+-- Dump completed on 2022-12-08 23:07:46

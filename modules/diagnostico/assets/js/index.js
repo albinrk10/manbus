@@ -15,7 +15,7 @@ var columnas = [
 
     {
         field: "matricula",
-        title: "Matricula"
+        title: "Placa"
     },
     {
         field: "denominacion_comercial",

@@ -14,7 +14,7 @@ CLONAR PROYECTO A MAQUINA LOCAL
         git status                                                          Para ver los archivos que tiene cambios realizados
         git add .                                                           Para agregar todos los archivos modificados/nuevos a memoria
         git commit -m '<comentario del cambio>'                             Para agregar un comentario para subir
-        git push                                                            Para mandar cambios al repositorio  
+        git push                                                            Para Mandar cambios al repositorio  
 
 
 Mantenimiento contiene las funciones básicas que incluyen el inicio / cierre de sesión del usuario y módulos para su uso en una empresa local.

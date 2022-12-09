@@ -1,7 +1,7 @@
 function funcionEditarCombustible(id) {
     $.post(APP_URL + '/combustible/default/get-modal-edit/' + id, {}, function (resp) {
         bootbox.dialog({
-            title: "<h2><strong>Editar Combustible</strong></h2>",
+            title: "<h2><strong>Editar Tipo Combustible</strong></h2>",
             message: resp.plantilla,
             buttons: {}
         });

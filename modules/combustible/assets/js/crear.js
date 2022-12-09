@@ -1,7 +1,7 @@
 $("#modal-combustible").on("click", function () {
     $.post(APP_URL + '/combustible/default/get-modal', {}, function (resp) {
         bootbox.dialog({
-            title: "<h2><strong>Registro Combustible</strong></h2>",
+            title: "<h2><strong>Registro Tipo Combustible</strong></h2>",
             message: resp.plantilla,
             buttons: {}
         });

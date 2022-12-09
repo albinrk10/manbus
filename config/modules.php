@@ -56,4 +56,7 @@ return [
     'combustible' => [
         'class' => 'app\modules\combustible\Combustible',
     ],
+    'vehiculoCombustible' => [
+        'class' => 'app\modules\vehiculoCombustible\VehiculoCombustible',
+    ],
 ];
